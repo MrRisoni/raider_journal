@@ -1,8 +1,8 @@
-const CharDAO = require('../../daos/character_dao.js');
+const CharDAO = require('../daos/character_dao.js');
 
 
 function getRaidProgress(req, res) {
-    CharDAO.getRaidProgress(4).then(data => {
+    CharDAO.getRaidProgress(1).then(data => {
         res.send(data);
     }).catch(err => {
         console.log(err);

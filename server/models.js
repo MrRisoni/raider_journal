@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize');
 
-const dbname = process.env.DB_NAME || 'raiderdb';
+const dbname = process.env.DB_NAME || 'raider_db';
 
-const user = process.env.DB_USER || 'root';
-const passwd = process.env.DB_PASS || '';
+const user = process.env.MMO_DB_USER || 'root';
+const passwd = process.env.MMO_DB_PASSWD || '';
 const host = process.env.DB_HOST || '';
 
 const sequelize = new Sequelize(dbname, user, passwd, {

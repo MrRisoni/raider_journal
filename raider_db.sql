@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 11, 2021 at 05:55 AM
+-- Generation Time: Nov 13, 2021 at 11:46 AM
 -- Server version: 10.6.4-MariaDB
 -- PHP Version: 7.4.25
 
@@ -49,14 +49,14 @@ INSERT INTO `accounts` (`id`, `email`, `created_at`) VALUES
 CREATE TABLE `bosses` (
   `id` int(10) UNSIGNED NOT NULL,
   `raid_id` int(10) UNSIGNED NOT NULL,
-  `title` varchar(45) NOT NULL
+  `name` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32;
 
 --
 -- Dumping data for table `bosses`
 --
 
-INSERT INTO `bosses` (`id`, `raid_id`, `title`) VALUES
+INSERT INTO `bosses` (`id`, `raid_id`, `name`) VALUES
 (1, 1, 'Altimor'),
 (2, 1, 'Shriekwing'),
 (3, 1, 'Innerva'),
@@ -66,7 +66,8 @@ INSERT INTO `bosses` (`id`, `raid_id`, `title`) VALUES
 (7, 1, 'Xymox'),
 (8, 1, 'Kaelthas'),
 (9, 1, 'Council of Blood'),
-(10, 1, 'Denathrius');
+(10, 1, 'Denathrius'),
+(11, 2, 'Tarragrue');
 
 -- --------------------------------------------------------
 
@@ -96,6 +97,27 @@ INSERT INTO `classes` (`id`, `title`) VALUES
 (3, 'Shaman'),
 (5, 'Warlock'),
 (1, 'Warrior');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `covenants`
+--
+
+CREATE TABLE `covenants` (
+  `id` tinyint(3) UNSIGNED NOT NULL,
+  `title` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf32;
+
+--
+-- Dumping data for table `covenants`
+--
+
+INSERT INTO `covenants` (`id`, `title`) VALUES
+(1, 'Kyrian'),
+(2, 'Necrolords'),
+(3, 'Night Fae'),
+(4, 'Venthyr');
 
 -- --------------------------------------------------------
 
@@ -145,16 +167,17 @@ INSERT INTO `expansions` (`id`, `title`) VALUES
 CREATE TABLE `raids` (
   `id` int(10) UNSIGNED NOT NULL,
   `expansion_id` tinyint(3) UNSIGNED NOT NULL,
-  `title` varchar(45) NOT NULL
+  `title` varchar(45) NOT NULL,
+  `season_id` tinyint(3) UNSIGNED NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32;
 
 --
 -- Dumping data for table `raids`
 --
 
-INSERT INTO `raids` (`id`, `expansion_id`, `title`) VALUES
-(1, 1, 'Castle Nathria'),
-(2, 1, 'Sanctum of Domination');
+INSERT INTO `raids` (`id`, `expansion_id`, `title`, `season_id`) VALUES
+(1, 1, 'Castle Nathria', 1),
+(2, 1, 'Sanctum of Domination', 2);
 
 -- --------------------------------------------------------
 
@@ -175,7 +198,11 @@ CREATE TABLE `raid_progress` (
 --
 
 INSERT INTO `raid_progress` (`id`, `boss_id`, `difficulty_id`, `toon_id`, `created_at`) VALUES
-(1, 1, 4, 1, '2021-11-02');
+(1, 1, 1, 1, '2021-11-02'),
+(2, 1, 4, 1, '2021-11-08'),
+(3, 1, 3, 1, '2021-11-08'),
+(4, 11, 3, 1, '2021-11-18'),
+(5, 11, 3, 1, '2021-11-08');
 
 -- --------------------------------------------------------
 
@@ -219,6 +246,13 @@ ALTER TABLE `bosses`
 -- Indexes for table `classes`
 --
 ALTER TABLE `classes`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `title` (`title`);
+
+--
+-- Indexes for table `covenants`
+--
+ALTER TABLE `covenants`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `title` (`title`);
 
@@ -275,13 +309,19 @@ ALTER TABLE `accounts`
 -- AUTO_INCREMENT for table `bosses`
 --
 ALTER TABLE `bosses`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `classes`
 --
 ALTER TABLE `classes`
   MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `covenants`
+--
+ALTER TABLE `covenants`
+  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `difficulties`
@@ -305,7 +345,7 @@ ALTER TABLE `raids`
 -- AUTO_INCREMENT for table `raid_progress`
 --
 ALTER TABLE `raid_progress`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `toons`
