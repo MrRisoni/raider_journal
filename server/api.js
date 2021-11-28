@@ -18,3 +18,6 @@ http.listen(port, (req, res) => {
 module.exports = {
     serverApp: app
 };
+
+
+//  localhost:3500/api/character/raid
