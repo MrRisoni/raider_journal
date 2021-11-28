@@ -56,15 +56,7 @@ function getTimed(req, res) {
     })
 }
 
-function getTimedPerSpec(req,res) {
-    CharDAO.getTimedPerSpec(1).then(data => {
-        res.send(data);
-    }).catch(err => {
-        console.log(err);
-        res.sendStatus(404);
-    })
-}
+
 
 module.exports = {getRaidProgress,getTimedUpTo5,
-    getTimedPerSpec,
     getTimed5To10,getTimed10To15,getTimedOver15,getTimed}
