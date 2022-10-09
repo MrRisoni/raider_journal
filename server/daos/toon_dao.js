@@ -6,7 +6,7 @@ function  getRaidProgress(characterId = 4) {
   return new Promise((resolve) => {
     resolve ([
       {id:1,title:'Castle Nathria',bosses:10, modes:[{mode:'NM',killed:4}]},
-      {id:2,title:'Santum of Domination',bosses:10, modes:[{mode:'NM',killed:3}]},
+      {id:2,title:'Santum of Domination',bosses:10, modes:[{mode:'NM',killed:3},{mode:'HM',killed:2},{mode:'MM',killed:1}]},
       {id:3,title:'Sepulcher  of First Ones',bosses:11, modes:[{mode:'NM',killed:6}]}
 
     ]);

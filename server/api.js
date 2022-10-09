@@ -6,8 +6,10 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const toonRoutes = require("./routes/toon_routes");
+const raidRoutes = require("./routes/raid_routes");
 
 app.use("/", toonRoutes);
+app.use("/", raidRoutes);
 
 
 http.listen(port, (req, res) => {
@@ -19,4 +21,3 @@ module.exports = {
 };
 
 
-//  localhost:3500/api/character/raid
