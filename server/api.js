@@ -4,11 +4,10 @@ const app = express();
 const http = require('http').Server(app);
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const Sequelize = require('sequelize');
 
-const characterRoutes = require("./routes/character_routes");
+const toonRoutes = require("./routes/toon_routes");
 
-app.use("/", characterRoutes);
+app.use("/", toonRoutes);
 
 
 http.listen(port, (req, res) => {

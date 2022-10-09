@@ -1,4 +1,4 @@
-const CharDAO = require('../daos/character_dao.js');
+const CharDAO = require('../daos/toon_dao.js');
 
 
 function getRaidProgress(req, res) {
